@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WM 2026 – Digitale Vermarktungsprodukte HAZ/NP | MADSACK Medien Hannover</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2b4a;
+    --navy-dark: #111e35;
+    --navy-mid: #253a5e;
+    --red: #cc2a2a;
+    --gold: #e8c060;
+    --white: #ffffff;
+    --mid-gray: #b0b8c5;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Source Sans 3', sans-serif; background: var(--navy-dark); color: var(--white); min-height: 100vh; line-height: 1.6; }
+
+  /* HEADER */
+  .site-header { background: var(--navy-dark); border-bottom: 3px solid var(--red); padding: 0 2rem; position: sticky; top: 0; z-index: 100; }
+  .header-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; gap: 1.5rem; padding: 1rem 0; }
+  .logo-circle { width: 44px; height: 44px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .logo-block { display: flex; align-items: center; gap: 12px; }
+  .logo-text { font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); line-height: 1.2; }
+  .logo-text span { display: block; font-weight: 300; font-size: 11px; color: var(--mid-gray); letter-spacing: 0.05em; text-transform: none; }
+  .header-divider { width: 1px; height: 36px; background: rgba(255,255,255,0.15); }
+  .header-title { font-size: 16px; font-weight: 600; color: var(--white); }
+  .header-subtitle { font-size: 12px; color: var(--gold); font-weight: 400; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #2a3f6b 100%); padding: 4rem 2rem 3rem; border-bottom: 1px solid rgba(255,255,255,0.08); position: relative; overflow: hidden; }
+  .hero::before { content: '⚽'; position: absolute; right: -30px; top: -30px; font-size: 280px; opacity: 0.04; line-height: 1; }
+  .hero-inner { max-width: 1100px; margin: 0 auto; }
+  .hero-tag { display: inline-block; background: var(--red); color: var(--white); font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 2px; margin-bottom: 1rem; }
+  .hero h1 { font-family: 'Source Serif 4', serif; font-size: 2.4rem; font-weight: 600; line-height: 1.2; margin-bottom: 0.75rem; color: var(--white); }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero p { font-size: 16px; color: var(--mid-gray); max-width: 580px; margin-bottom: 2rem; }
+  .hero-stats { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .stat-num { font-size: 1.8rem; font-weight: 700; color: var(--gold); line-height: 1; }
+  .stat-label { font-size: 12px; color: var(--mid-gray); margin-top: 3px; }
+
+  /* FILTER */
+  .filter-bar-wrap { background: var(--navy); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 2rem; position: sticky; top: 74px; z-index: 90; }
+  .filter-bar { max-width: 1100px; margin: 0 auto; display: flex; overflow-x: auto; }
+  .filter-btn { padding: 14px 20px; border: none; background: transparent; color: var(--mid-gray); font-size: 13px; font-weight: 600; font-family: inherit; letter-spacing: 0.04em; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: all .2s; }
+  .filter-btn:hover { color: var(--white); }
+  .filter-btn.active { color: var(--white); border-bottom-color: var(--red); }
+
+  /* MAIN */
+  .main { max-width: 1100px; margin: 0 auto; padding: 2.5rem 2rem; }
+  .section-intro { margin-bottom: 1.5rem; font-size: 13px; color: var(--mid-gray); letter-spacing: 0.04em; text-transform: uppercase; font-weight: 600; }
+  .section-intro span { background: rgba(255,255,255,0.08); padding: 3px 10px; border-radius: 2px; }
+
+  /* CARDS */
+  .products-grid { display: flex; flex-direction: column; gap: 1px; background: rgba(255,255,255,0.06); border-radius: 8px; overflow: hidden; }
+  .product-card { background: var(--navy); }
+  .product-card:first-child { border-radius: 8px 8px 0 0; }
+  .product-card:last-child { border-radius: 0 0 8px 8px; }
+  .product-card.open { background: #1d2f4f; }
+
+  .card-header { display: flex; align-items: center; gap: 14px; padding: 1.1rem 1.5rem; cursor: pointer; user-select: none; }
+  .card-header:hover { background: rgba(255,255,255,0.03); }
+
+  .cat-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 9px; border-radius: 2px; flex-shrink: 0; min-width: 80px; text-align: center; }
+  .cat-tw { background: rgba(30,100,200,0.25); color: #7eb8ff; border: 1px solid rgba(30,100,200,0.4); }
+  .cat-na { background: rgba(30,160,80,0.2); color: #70d490; border: 1px solid rgba(30,160,80,0.35); }
+  .cat-sp { background: rgba(200,150,30,0.2); color: #f0c84a; border: 1px solid rgba(200,150,30,0.35); }
+  .cat-yt { background: rgba(200,40,40,0.2); color: #ff8080; border: 1px solid rgba(200,40,40,0.35); }
+
+  .card-name { flex: 1; font-size: 15px; font-weight: 600; color: var(--white); }
+  .card-price-preview { font-size: 13px; color: var(--gold); font-weight: 600; white-space: nowrap; margin-right: 8px; }
+  .chevron { width: 20px; height: 20px; border-radius: 50%; background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform .25s; font-size: 10px; color: var(--mid-gray); }
+  .product-card.open .chevron { transform: rotate(180deg); background: rgba(255,255,255,0.12); }
+
+  .card-body { display: none; padding: 0 1.5rem 1.5rem; border-top: 1px solid rgba(255,255,255,0.07); }
+  .product-card.open .card-body { display: block; }
+
+  .body-section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid-gray); margin: 1.25rem 0 0.6rem; }
+  .vorstellung { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.75; white-space: pre-line; }
+
+  .price-box { display: inline-flex; align-items: center; gap: 8px; background: rgba(232,192,96,0.12); border: 1px solid rgba(232,192,96,0.3); border-radius: 4px; padding: 7px 14px; margin-top: 1rem; }
+  .price-box-text { font-size: 14px; font-weight: 700; color: var(--gold); }
+
+  .aufwand-list { display: flex; flex-direction: column; gap: 8px; }
+  .aufwand-item { background: rgba(255,255,255,0.04); border-left: 3px solid rgba(255,255,255,0.12); border-radius: 0 4px 4px 0; padding: 0.7rem 1rem; }
+  .aufwand-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+  .aufwand-text { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+  .kunden-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+  .kunden-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 0.85rem 1rem; }
+  .kunden-item-header { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .kunden-icon { font-size: 16px; }
+  .kunden-title { font-size: 13px; font-weight: 700; color: var(--white); flex: 1; }
+  .kunden-tag { font-size: 10px; padding: 2px 7px; border-radius: 2px; font-weight: 700; letter-spacing: 0.06em; }
+  .tag-emp { background: rgba(30,160,80,0.25); color: #70d490; }
+  .tag-pre { background: rgba(232,192,96,0.2); color: var(--gold); }
+  .tag-default { background: rgba(255,255,255,0.08); color: var(--mid-gray); }
+  .kunden-text { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* FOOTER */
+  .footer { background: var(--navy-dark); border-top: 1px solid rgba(255,255,255,0.08); padding: 2rem; margin-top: 3rem; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+  .footer-brand { font-size: 12px; color: var(--mid-gray); }
+  .footer-brand strong { color: var(--white); }
+  .footer-contact { font-size: 12px; color: var(--mid-gray); text-align: right; }
+
+  .empty-state { text-align: center; padding: 4rem 2rem; color: var(--mid-gray); font-size: 15px; display: none; }
+
+  @media (max-width: 680px) {
+    .hero h1 { font-size: 1.7rem; }
+    .hero-stats { gap: 1.2rem; }
+    .card-price-preview { display: none; }
+    .filter-btn { padding: 12px 14px; font-size: 12px; }
+    .kunden-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo-block">
+      <div class="logo-circle">M</div>
+      <div class="logo-text">MADSACK<span>Medien Hannover</span></div>
+    </div>
+    <div class="header-divider"></div>
+    <div>
+      <div class="header-title">WM 2026 – Vermarktungsprodukte</div>
+      <div class="header-subtitle">HAZ &amp; Neue Presse</div>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">⚽ Fußball-WM 2026</div>
+    <h1>Digitale Werbepakete<br>zur <em>WM 2026</em></h1>
+    <p>Erreichen Sie Hunderttausende hannoversche Fußballfans mit maßgeschneiderten Sponsoring- und Content-Paketen rund um die Weltmeisterschaft.</p>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">400k+</div>
+        <div class="stat-label">Social Follower</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Wochen WM-Content</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8</div>
+        <div class="stat-label">Produkt-Pakete</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Reichweitenstarke Marken</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="filter-bar-wrap">
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filter('all',this)">Alle Produkte</button>
+    <button class="filter-btn" onclick="filter('tw',this)">Themenwelt</button>
+    <button class="filter-btn" onclick="filter('na',this)">Native Ads</button>
+    <button class="filter-btn" onclick="filter('sp',this)">Sponsored Posts</button>
+    <button class="filter-btn" onclick="filter('yt',this)">YouTube</button>
+  </div>
+</div>
+
+<main class="main">
+  <p class="section-intro"><span id="count-label">8 Produkte verfügbar</span></p>
+  <div class="products-grid" id="products"></div>
+  <div class="empty-state" id="empty">Keine Produkte in dieser Kategorie.</div>
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <strong>MADSACK Medien Hannover</strong><br>
+      Hannoversche Allgemeine Zeitung &amp; Neue Presse
+    </div>
+    <div class="footer-contact">
+      WM 2026 Vermarktungspaket<br>
+      Anfragen: mediaberatung@madsack.de
+    </div>
+  </div>
+</footer>
+
+<script>
+const products=[
+  {id:'tw1',cat:'tw',name:'WM-Themenwelt Hauptsponsor',badge:'Themenwelt',bc:'cat-tw',preis:'ab 15.000 €',pv:'15.000–25.000 € Gesamtpaket',
+   vo:`Die WM-Themenwelt ist unsere redaktionelle Sonderwelt zur Fußball-WM – ein eigener Bereich auf HAZ.de und NP.de, der während der gesamten WM mit täglichen Berichten, Analysen, Livetickern und Hintergrundstücken bespielt wird.
+
+Als Hauptsponsor sind Sie der einzige Sponsor dieser Themenwelt. Ihr Logo erscheint auf jeder Seite der Themenwelt, in jedem Artikel, im Liveticker und in allen Social-Media-Posts, die wir zu unserer WM-Berichterstattung veröffentlichen.
+
+Die Themenwelt wird über den gesamten WM-Zeitraum (ca. 5 Wochen) aktiv bespielt. Bei einer WM gibt es täglich Spiele – das bedeutet täglich neue Artikel, täglich neue Aufrufe, täglich neue Sichtbarkeit für Ihr Brand.`,
+   aufwand:[{t:'Redaktionelle Berichterstattung',p:'Unsere Sportredaktion berichtet täglich von der WM – Spielberichte, Analysen, Kolumnen, Hintergrundstücke. Die Themenwelt ist der zentrale Anlaufpunkt für WM-Fans in der Region Hannover.'},{t:'Technische Umsetzung',p:'Ihre Brand-Integration wird von unserem digitalen Team eingerichtet: Logo-Platzierung, Farbakzente, verlinkter Banner zu Ihrer Landingpage.'},{t:'Reichweiten-Reporting',p:'Nach der WM erhalten Sie ein detailliertes Reporting: Pageviews, Klicks auf Ihr Logo/Banner, Social-Media-Reichweite aller WM-Posts mit Ihrer Markenpräsenz.'}],
+   kunden:[{i:'🏆',t:'Exklusivität',tag:'Empfehlung',tc:'tag-emp',p:'Als Hauptsponsor sind Sie der einzige Sponsor der Themenwelt. Keine Konkurrenz, keine Ablenkung – volle Aufmerksamkeit auf Ihre Brand.'},{i:'👁️',t:'Dauerhafte Sichtbarkeit',tag:'Reichweite',tc:'tag-default',p:'Ihr Logo erscheint in JEDEM Artikel der Themenwelt. Bei 50 WM-Artikeln über 5 Wochen: 50x Ihre Marke, prominent platziert.'},{i:'📍',t:'Regionale Relevanz',tag:'Zielgruppe',tc:'tag-default',p:'HAZ/NP-Leser sind Hannoveraner. Sie erreichen Ihre lokale Zielgruppe in einem hochrelevanten, emotionalen Kontext.'}]},
+  {id:'tw2',cat:'tw',name:'WM-Themenwelt Artikelsponsor',badge:'Themenwelt',bc:'cat-tw',preis:'ab 500 €/Artikel',pv:'500–1.500 € / Artikel · 5.000–8.000 € Gesamtpaket (10 Artikel)',
+   vo:`Nicht jedes Unternehmen braucht die volle Themenwelt-Präsenz. Der Artikelsponsor bucht gezielt einzelne Artikel – und zahlt nur für das, was er wirklich braucht.
+
+Besonders interessant für Unternehmen mit WM-Bezug: Reiseanbieter können die Gastgeberland-Artikel sponsern, Sportwettenanbieter die Analysen, Elektronikhändler die Technik-Artikel über VAR und Hawk-Eye.
+
+Der Sponsor erscheint prominent am Anfang und Ende des Artikels – mit Logo, Kurztext und Link. Kein generisches Banner, sondern eine thematisch passende Partnerschaft.`,
+   aufwand:[{t:'Artikel-Matching',p:'Wir identifizieren gemeinsam die Artikel, die am besten zu Ihrem Unternehmen passen. Gastgeberland-Artikel für Reiseanbieter, Spielanalysen für Wettanbieter, Technik-Artikel für Elektronikhändler.'},{t:'Sponsor-Integration',p:'Ihr Logo, ein kurzer Partnertext und ein CTA-Link werden am Anfang und Ende jedes gebuchten Artikels platziert. Die Integration wirkt redaktionell, nicht wie ein Banner.'},{t:'Flexibles Paket',p:'Starten Sie mit 3 Artikeln und buchen Sie nach. Oder buchen Sie ein Paket für die gesamte Gruppenphase. Wir sind flexibel.'}],
+   kunden:[{i:'🎯',t:'Thematisches Targeting',tag:'Empfehlung',tc:'tag-emp',p:'Sie sponsern nur Artikel, die thematisch zu Ihnen passen. Ein Reiseanbieter sponsert den Mexiko-Artikel, kein Ablenkungsrisiko.'},{i:'🔗',t:'CTA mit Link',tag:'Performance',tc:'tag-default',p:'Jeder Artikel endet mit einem CTA zu Ihrer Website oder einem speziellen WM-Angebot. Messbarer Traffic, direkte Conversion.'},{i:'🗺️',t:'Sponsor pro Gastgeberland',tag:'Flexibel',tc:'tag-default',p:'3 verschiedene Sponsoren – je einer pro Gastgeberland. Günstigerer Einstieg, aber weniger Gesamtpräsenz.'}]},
+  {id:'na1',cat:'na',name:'WM-Story Native Ad',badge:'Native Ads',bc:'cat-na',preis:'ab 3.000 €/Story',pv:'3.000–6.000 € / Story · 10.000–18.000 € Gesamtpaket (3 Stories)',
+   vo:`Eine WM-Story ist ein langer, redaktionell gestalteter Artikel – mit echtem Mehrwert für den Leser, aber klarer Markenbotschaft des Sponsors.
+
+Die Story ist kein versteckter Werbetext. Sie ist transparent als "Gesponsert von [Marke]" gekennzeichnet – aber sie ist so gut geschrieben, dass Leser sie trotzdem lesen wollen. Unser Redaktionsteam schreibt sie gemeinsam mit Ihnen.
+
+Beispiel: Eine Versicherung sponsert eine Story über "Die 5 teuersten WM-Verletzungen der Geschichte" – spannend für Fußballfans, relevant für eine Versicherung. Am Ende ein natürlicher CTA zur Sportversicherung.`,
+   aufwand:[{t:'Konzept-Entwicklung',p:'Gemeinsam entwickeln wir ein Story-Thema, das sowohl für WM-Fans interessant als auch für Ihre Marke relevant ist. Kein Werbetext, sondern echter Content.'},{t:'Redaktionelle Produktion',p:'Unser Redaktionsteam schreibt die Story – professionell, journalistisch, mit echten Fakten und Mehrwert. Sie erhalten Entwürfe zur Abstimmung vor Veröffentlichung.'},{t:'Platzierung und Promotion',p:'Die Story erscheint prominent auf HAZ.de/NP.de und in der WM-Themenwelt. Wir promoten sie aktiv über Social Media und Newsletter.'}],
+   kunden:[{i:'📰',t:'Echte redaktionelle Qualität',tag:'Premium',tc:'tag-pre',p:'Kein Werbetext, sondern eine Geschichte, die Leser wirklich lesen wollen. Ihre Marke wird mit Qualität assoziiert, nicht mit Unterbrechung.'},{i:'📈',t:'Lange Verweildauer',tag:'Engagement',tc:'tag-default',p:'Native Ads erzielen 3–5x längere Verweildauer als Display-Werbung. Der Leser verbringt Zeit mit Ihrer Botschaft.'},{i:'🔁',t:'Teilbar',tag:'Reichweite',tc:'tag-default',p:'Gute Stories werden geteilt. Wenn Ihr gesponserter Artikel viral geht, zahlen Sie nichts extra – aber Ihre Marke ist dabei.'}]},
+  {id:'na2',cat:'na',name:'WM-Reiseguide Native',badge:'Native Ads',bc:'cat-na',preis:'ab 4.000 €/Guide',pv:'4.000–8.000 € / Guide · 12.000–20.000 € Gesamtpaket',
+   vo:`Die WM 2026 findet in den USA, Kanada und Mexiko statt – für Reisende eine echte Herausforderung. Unser WM-Reiseguide ist der umfassende Ratgeber: Visum, Flüge, Hotels, Sicherheit, Währung, Klima.
+
+Ein Reiseanbieter, eine Kreditkarte ohne Auslandsentgelt, eine Reiseversicherung oder eine Bank mit gutem Währungsumtausch: Der Sponsor des WM-Reiseguides ist direkt neben dem Thema, das seine Zielgruppe gerade braucht.
+
+Der Guide erscheint vor der WM (wenn Menschen planen) und bleibt dauerhaft auf HAZ.de/NP.de abrufbar.`,
+   aufwand:[{t:'Redaktionelle Recherche',p:'Unsere Redaktion recherchiert umfassend: Einreisebestimmungen, Hotelempfehlungen, Stadion-Infos für alle 3 Gastgeberstädte, Sicherheitshinweise, Budget-Tipps.'},{t:'Sponsor-Integration',p:'Der Sponsor wird als "Offizieller Reisepartner" positioniert. Logo prominent am Anfang, CTA mit Link am Ende jeder Rubrik.'},{t:'Dauerhafter Content',p:'Der Guide bleibt dauerhaft auf der Website und wird vor der WM regelmäßig aktualisiert. Jeder, der zur WM reisen möchte, landet hier.'}],
+   kunden:[{i:'✈️',t:'Offizieller Reisepartner',tag:'Empfehlung',tc:'tag-emp',p:'Ihr Unternehmen trägt den Titel "Offizieller Reisepartner der WM-Berichterstattung von HAZ/NP".'},{i:'🕐',t:'Evergreen-Content',tag:'Langfristig',tc:'tag-default',p:'Der Guide ist dauerhaft online. Im Gegensatz zu einem Banner, das nach 4 Wochen verschwindet, bleibt Ihre Markenpräsenz bestehen.'},{i:'💳',t:'Produkt-Integration',tag:'Premium',tc:'tag-pre',p:'Optional: Ihr konkretes Produkt kann redaktionell eingebettet werden – z. B. "Diese Kreditkarte hat kein Auslandsentgelt" im Finanz-Abschnitt.'}]},
+  {id:'na3',cat:'na',name:'WM-Daten-Infografik Native',badge:'Native Ads',bc:'cat-na',preis:'ab 2.000 €/Infografik',pv:'2.000–4.000 € / Infografik · 8.000–15.000 € Gesamtpaket (5 Wochen)',
+   vo:`Zahlen erzählen die WM anders als Worte es könnten. Wie weit laufen die Spieler? Wer hat die meisten Expected Goals? Welches Team schießt die meisten Tore in der zweiten Halbzeit?
+
+Wir produzieren jede Woche eine aufwändig gestaltete Daten-Infografik. Infografiken sind das meistgeteilte Format im Sport – der Sponsor profitiert davon organisch.
+
+Der Sponsor erscheint als "Offizieller Daten-Partner der WM-Berichterstattung von HAZ/NP". Sein Logo ist in jede Grafik eingebettet – auch wenn sie viral geht.`,
+   aufwand:[{t:'Datenrecherche und Auswertung',p:'Unsere Redaktion wertet wöchentlich aktuelle WM-Statistiken aus offiziellen Quellen aus. Die relevantesten Zahlen werden in eine erzählbare Geschichte verwandelt.'},{t:'Grafik-Produktion',p:'Unsere Grafik-Abteilung erstellt wöchentlich eine hochwertige, teilbare Infografik – quadratisch für Social Media, breit für die Website. Fester Platz für das Sponsor-Logo.'},{t:'5 Wochen, 5 Infografiken',p:'Eine Infografik pro Woche – abgestimmt auf die WM-Phase: Gruppenphase, KO-Runde, Halbfinale, Finale. Roter Faden über die gesamte WM.'}],
+   kunden:[{i:'📊',t:'Offizieller Daten-Partner',tag:'Empfehlung',tc:'tag-emp',p:'1 Sponsor trägt den Titel "Offizieller Daten-Partner der WM-Berichterstattung". Logo in allen 5 Infografiken und Social-Media-Posts.'},{i:'🎨',t:'Branding im Grafik-Design',tag:'Sichtbarkeit',tc:'tag-default',p:'Das Sponsor-Logo ist Teil der Grafik selbst – nicht als Banner daneben. Auch wenn die Grafik viral geht, ist das Logo immer dabei.'},{i:'💬',t:'Zitat des Sponsors',tag:'Premium',tc:'tag-pre',p:'Optional: Der Sponsor darf einen kurzen Kommentar als Quote einbetten lassen. Erhöht die inhaltliche Relevanz des Sponsors.'}]},
+  {id:'sp1',cat:'sp',name:'WM-Lokal Sponsored Post',badge:'Sponsored Post',bc:'cat-sp',preis:'ab 699 €',pv:'Reel 1.990 € · Beitrag 1.450 € · Story 699 €',
+   vo:`Der WM-Lokal Sponsored Post ist das niedrigschwelligste Produkt unseres WM-Angebots – und das, das am direktesten für Hannoveraner Unternehmen gemacht ist.
+
+Sie buchen einen Sponsored Post auf unserem Instagram- oder Facebook-Kanal (@haz.de, 400.000+ Follower). Der Post zeigt einen WM-Bezug und integriert Ihr Unternehmen als Sponsor.
+
+Für ein Restaurant: "Wo schaut ihr das Spiel? Wir haben einen Tipp – sponsored by [Restaurant]." Für ein Sportgeschäft: "Welches Trikot ist euer Favorit? Holt es euch bei [Geschäft]." Einfach, lokal, effektiv.`,
+   aufwand:[{t:'Konzept und Text',p:'Unser Social-Media-Team entwickelt ein Post-Konzept, das WM-Stimmung erzeugt und Ihr Unternehmen natürlich integriert. Kein plumper Werbepost, sondern echter Community-Content.'},{t:'Grafik oder Reel',p:'Je nach gebuchtem Format: ein hochwertiges Grafikdesign oder ein kurzes, professionell produziertes Reel. WM-Ästhetik, Ihr Logo, Ihre Botschaft.'},{t:'Veröffentlichung',p:'Der Post erscheint auf unseren Kanälen und wird organisch an unsere Community ausgespielt. Auf Wunsch zusätzlich paid boosten.'}],
+   kunden:[{i:'📍',t:'Lokale Zielgruppe',tag:'Empfehlung',tc:'tag-emp',p:'HAZ/NP-Follower sind Hannoveraner. Kein Streuverlust in andere Städte – Ihre Werbung erreicht die Menschen, die zu Ihnen kommen können.'},{i:'👥',t:'400.000+ Follower',tag:'Reichweite',tc:'tag-default',p:'Eine organische Reichweite von mehreren zehntausend Personen pro Post. Für lokale Unternehmen eine enorme Sichtbarkeit.'},{i:'📱',t:'WM-Hype nutzen',tag:'Timing',tc:'tag-default',p:'Die WM ist emotional aufgeladen. Ein gut gemachter WM-Post generiert mehr Engagement als ein normaler Werbebeitrag.'}]},
+  {id:'sp2',cat:'sp',name:'WM-Countdown Sponsored Series',badge:'Sponsored Post',bc:'cat-sp',preis:'ab 4.990 €',pv:'4.990 € (5 Posts) · 8.490 € (10 Posts)',
+   vo:`Nicht ein Post, sondern eine Serie. Der WM-Countdown ist eine tägliche oder wöchentliche Posting-Reihe, die wir in Ihrem Namen auf unseren Kanälen veröffentlichen.
+
+Täglich bis zum Eröffnungsspiel: "15 Tage bis zur WM – und [Sponsor] ist dabei." Nach Anpfiff: wöchentliche Highlights, Spielvorschauen, Fan-Votes – immer mit Ihrem Brand als fester Bestandteil.
+
+Eine Serie baut Vertrautheit auf. Nutzer sehen Ihre Marke nicht einmal, sondern fünf- oder zehnmal – in einem positiven, aufgeregten Kontext.`,
+   aufwand:[{t:'Redaktionsplan',p:'Wir erstellen gemeinsam einen Redaktionsplan für alle Posts der Serie. Themen, Formate, Tonalität – alles abgestimmt auf Ihre Marke und die WM-Phasen.'},{t:'Content-Produktion',p:'Unser Team produziert alle Posts – Grafiken, Reels, Texte. Sie erhalten alle Inhalte vor Veröffentlichung zur Freigabe.'},{t:'Gleichmäßige Verteilung',p:'Die Posts werden über den vereinbarten Zeitraum verteilt veröffentlicht – als roter Faden durch die gesamte WM.'}],
+   kunden:[{i:'🔄',t:'Wiederholter Markenkontakt',tag:'Empfehlung',tc:'tag-emp',p:'Statt einmal gesehen, zehnmal gesehen. Brand Awareness entsteht durch Wiederholung – eine Posting-Serie ist das effektivste Format dafür.'},{i:'📅',t:'WM als Dramaturgie',tag:'Storytelling',tc:'tag-default',p:'Gruppenphase, KO-Runde, Finale – die WM hat eine eigene Dramaturgie. Ihre Marke begleitet den Leser auf dieser Reise.'},{i:'💰',t:'Paketpreis',tag:'Sparpaket',tc:'tag-default',p:'5 oder 10 Posts als Paket sind deutlich günstiger als Einzelbuchungen. Je mehr Posts, desto günstiger der Stückpreis.'}]},
+  {id:'yt1',cat:'yt',name:'WM-YouTube Pre-Roll Sponsoring',badge:'YouTube',bc:'cat-yt',preis:'ab 3.000 €/Monat',pv:'3.000–6.000 € / Monat · 12.000–20.000 € WM-Gesamtpaket',
+   vo:`HAZ/NP betreibt einen aktiven YouTube-Kanal mit regelmäßigen Video-Formaten. Zur WM produzieren wir video-starken Content – Spielvorschauen, Analysen, Fan-Reaktionen, Stadion-Atmosphäre.
+
+Als Pre-Roll-Sponsor erscheinen Sie vor jedem WM-Video. Kein nerviges Overlay, sondern ein sauberes 6–15-sekündiges Branding, das der Nutzer sieht, bevor er sein gewünschtes Video startet.
+
+YouTube ist besonders wertvoll für jüngere Zielgruppen (18–35), die lineares TV zunehmend meiden.`,
+   aufwand:[{t:'Video-Produktion WM-Content',p:'Unsere Video-Redaktion produziert während der WM regelmäßig Clips – Spielvorschauen, Highlight-Zusammenfassungen, Analysen, Interviews. Qualitativ hochwertig, mobil optimiert.'},{t:'Pre-Roll Integration',p:'Ihr 6–15-sekündiger Pre-Roll-Spot wird vor jedem WM-Video ausgespielt. Wir helfen bei der Produktion des Spots, falls noch keiner vorhanden ist.'},{t:'YouTube Analytics',p:'Sie erhalten monatlich einen Report: Views, Watch Time, Klicks auf Ihre Verlinkung, demografische Auswertung Ihrer Zuschauer.'}],
+   kunden:[{i:'📱',t:'Junge Zielgruppe',tag:'Demografie',tc:'tag-default',p:'YouTube-Nutzer sind jünger als HAZ.de-Leser. Wenn Ihre Zielgruppe 18–35 ist, ist YouTube der effektivste Kanal.'},{i:'▶️',t:'Unskippable Branding',tag:'Empfehlung',tc:'tag-emp',p:'6-Sekunden-Pre-Rolls sind nicht überspringbar. 100% Sichtbarkeit, garantiert. Der Nutzer sieht Ihre Marke – immer.'},{i:'📈',t:'Wachsender Kanal',tag:'Potential',tc:'tag-default',p:'Zur WM wächst der Kanal überproportional. Sie profitieren von organischem Kanal-Wachstum, das Sie nicht extra bezahlen.'}]}
+];
+
+let active='all';
+function filter(cat,btn){
+  active=cat;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  render();
+}
+function toggle(id){
+  document.getElementById('card-'+id).classList.toggle('open');
+}
+function render(){
+  const items=active==='all'?products:products.filter(p=>p.cat===active);
+  const grid=document.getElementById('products');
+  const empty=document.getElementById('empty');
+  document.getElementById('count-label').textContent=items.length+' Produkt'+(items.length!==1?'e':'')+' verfügbar';
+  if(items.length===0){grid.style.display='none';empty.style.display='block';return;}
+  grid.style.display='flex';empty.style.display='none';
+  grid.innerHTML=items.map(p=>`
+    <div class="product-card" id="card-${p.id}">
+      <div class="card-header" onclick="toggle('${p.id}')">
+        <span class="cat-badge ${p.bc}">${p.badge}</span>
+        <span class="card-name">${p.name}</span>
+        <span class="card-price-preview">${p.preis}</span>
+        <div class="chevron">▼</div>
+      </div>
+      <div class="card-body">
+        <div class="body-section-label">Produktbeschreibung</div>
+        <p class="vorstellung">${p.vo}</p>
+        <div class="price-box"><span class="price-box-text">€&nbsp;&nbsp;${p.pv}</span></div>
+        <div class="body-section-label" style="margin-top:1.25rem">Was liefern wir?</div>
+        <div class="aufwand-list">${p.aufwand.map(a=>`<div class="aufwand-item"><div class="aufwand-title">${a.t}</div><div class="aufwand-text">${a.p}</div></div>`).join('')}</div>
+        <div class="body-section-label" style="margin-top:1.25rem">Was hat der Kunde davon?</div>
+        <div class="kunden-grid">${p.kunden.map(k=>`<div class="kunden-item"><div class="kunden-item-header"><span class="kunden-icon">${k.i}</span><span class="kunden-title">${k.t}</span><span class="kunden-tag ${k.tc}">${k.tag}</span></div><div class="kunden-text">${k.p}</div></div>`).join('')}</div>
+      </div>
+    </div>`).join('');
+}
+render();
+</script>
+</body>
+</html>
